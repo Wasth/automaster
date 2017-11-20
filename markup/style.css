@@ -145,4 +145,5 @@ body {
 .service.busy {
     cursor: default;
     background: #ffe5e5;
+    color: gray;
 }
