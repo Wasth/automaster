@@ -51,6 +51,8 @@ body {
 #signup {
     width: 520px;
     margin: 15px auto;
+    background: white;
+    padding: 30px;
 }
 #signup input {
     display: block;
@@ -74,4 +76,73 @@ body {
 }
 #signup button[type=submit]:hover {
     box-shadow: 0 0 10px rgba(0,0,0,0.5);
+}
+
+/*--- SIGNIN
+ */
+#signin {
+    width: 520px;
+    margin: 15px auto;
+    background: white;
+    padding: 30px;
+}
+#signin input {
+    display: block;
+    width: 500px;
+    margin-bottom: 15px;
+    padding: 10px;
+    font-size: 14px;
+    border: 0;
+    border-radius: 5px;
+    box-shadow: 0 0 2px rgba(0,0,0,0.5);
+}
+#signin button[type=submit] {
+    padding: 10px;
+    font-size: 14px;
+    border: 0;
+    border-radius: 5px;
+    box-shadow: 0 0 2px rgba(0,0,0,0.5);
+    background: #1c1f20;
+    color: white;
+    cursor: pointer;
+}
+#signin button[type=submit]:hover {
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+}
+/*--- SERVICES LISTS
+ */
+#services {
+    background: white;
+    padding: 30px;
+    margin-top: 15px;
+}
+.filter-item {
+    border-radius: 5px;
+    box-shadow: 0 0 2px rgba(0,0,0,0.5);
+    /*background: #1c1f20;*/
+    /*color: white;*/
+    cursor: pointer;
+    display: inline-block;
+    padding: 15px;
+}
+#servicesList {
+    margin-top: 15px;
+}
+.service {
+    border-top: 1px solid gray;
+    border-bottom: 1px solid gray;
+    padding: 30px;
+    margin-bottom: 5px;
+    cursor: pointer;
+}
+.service:last-child {
+    /*border-bottom: 1px solid gray;*/
+}
+.service.passed {
+    opacity: 0.5;
+    cursor: default;
+}
+.service.busy {
+    cursor: default;
+    background: #ffe5e5;
 }
