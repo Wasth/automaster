@@ -14,6 +14,9 @@ class m171121_065508_create_services_table extends Migration
     {
         $this->createTable('services', [
             'id' => $this->primaryKey(),
+            'name' => $this->string(),
+            'date' => $this->date(),
+            'max_order' => $this->integer(),
         ]);
     }
 

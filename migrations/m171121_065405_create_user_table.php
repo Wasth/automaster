@@ -14,6 +14,12 @@ class m171121_065405_create_user_table extends Migration
     {
         $this->createTable('user', [
             'id' => $this->primaryKey(),
+            'full_name' => $this->text(),
+            'email' => $this->string(),
+            'login' => $this->string(),
+            'pass' => $this->string(),
+            'image' => $this->string(),
+            'isAdmin' => $this->integer()->defaultValue(0),
         ]);
     }
 
