@@ -3,14 +3,14 @@
 namespace app\modules\admin\controllers;
 
 use Yii;
-use app\models\User;
-use app\models\UserservicesSearch;
+use app\models\UserServices;
+use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * UserserviceController implements the CRUD actions for User model.
+ * UserserviceController implements the CRUD actions for UserServices model.
  */
 class UserserviceController extends Controller
 {
@@ -30,22 +30,22 @@ class UserserviceController extends Controller
     }
 
     /**
-     * Lists all User models.
+     * Lists all UserServices models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new UserservicesSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $dataProvider = new ActiveDataProvider([
+            'query' => UserServices::find(),
+        ]);
 
         return $this->render('index', [
-            'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
     }
 
     /**
-     * Displays a single User model.
+     * Displays a single UserServices model.
      * @param integer $id
      * @return mixed
      */
@@ -57,13 +57,13 @@ class UserserviceController extends Controller
     }
 
     /**
-     * Creates a new User model.
+     * Creates a new UserServices model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new User();
+        $model = new UserServices();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -75,7 +75,7 @@ class UserserviceController extends Controller
     }
 
     /**
-     * Updates an existing User model.
+     * Updates an existing UserServices model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -94,7 +94,7 @@ class UserserviceController extends Controller
     }
 
     /**
-     * Deletes an existing User model.
+     * Deletes an existing UserServices model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -107,15 +107,15 @@ class UserserviceController extends Controller
     }
 
     /**
-     * Finds the User model based on its primary key value.
+     * Finds the UserServices model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return User the loaded model
+     * @return UserServices the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = User::findOne($id)) !== null) {
+        if (($model = UserServices::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
