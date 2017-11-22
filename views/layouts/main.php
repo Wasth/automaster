@@ -3,13 +3,16 @@
 /* @var $this \yii\web\View */
 /* @var $content string */
 
+use app\assets\PublicAsset;
 use yii\helpers\Html;
 use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
+use yii\helpers\Url;
 use yii\widgets\Breadcrumbs;
 use app\assets\AppAsset;
 
-AppAsset::register($this);
+PublicAsset::register($this);
+
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
@@ -26,8 +29,32 @@ AppAsset::register($this);
 <?php $this->beginBody() ?>
 
 <div class="wrap">
+    <div id="headerWrapper">
+        <div id="header" class="content">
+            <div class="left">
+                <a href="/">
+                    <h1>Automaster</h1>
+                </a>
+            </div>
+
+            <div class="right">
+                <?php if(Yii::$app->user->isGuest): ?>
+                    <a href="#">Регистрация</a>
+                    |
+                    <a href="<?= Url::toRoute('/site/login') ?>">Войти</a>
+                <?php else: ?>
+                    <a href="#">Услуги</a>
+                    |
+                    <a href="">Мои записи</a>
+                <?php endif; ?>
+            </div>
+            <div class="clear">
+
+            </div>
+        </div>
+    </div>
     <?php
-    NavBar::begin([
+    /*NavBar::begin([
         'brandLabel' => 'My Company',
         'brandUrl' => Yii::$app->homeUrl,
         'options' => [
@@ -54,7 +81,7 @@ AppAsset::register($this);
             )
         ],
     ]);
-    NavBar::end();
+    NavBar::end();*/
     ?>
 
     <div class="container">
@@ -65,13 +92,7 @@ AppAsset::register($this);
     </div>
 </div>
 
-<footer class="footer">
-    <div class="container">
-        <p class="pull-left">&copy; My Company <?= date('Y') ?></p>
 
-        <p class="pull-right"><?= Yii::powered() ?></p>
-    </div>
-</footer>
 
 <?php $this->endBody() ?>
 </body>

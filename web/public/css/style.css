@@ -1,0 +1,200 @@
+* {
+    padding: 0;
+    margin: 0;
+    font-family: Tahoma;
+}
+body {
+    background: url("../img/bg.jpg");
+    background-attachment: fixed;
+}
+.content {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+.left {
+    float: left;
+}
+.right {
+    float: right;
+}
+.clear {
+    clear: both;
+}
+
+
+/*--- HEADER
+*/
+
+#headerWrapper {
+    border-bottom: 1px solid gray;
+    /*background: #38876f;*/
+    background: #fff;
+    box-shadow: 0 0 5px rgba(0,0,0,0.5);
+}
+#header {
+    padding: 15px;
+    /*color: white;*/
+}
+#header h1{
+    /*color: white;*/
+    font-weight: lighter;
+}
+#header a {
+    text-decoration: none;
+    color: black;
+}
+#header .right {
+    position: relative;
+    top: 12px;
+}
+
+/*--- SIGNUP
+*/
+#signup {
+    width: 520px;
+    margin: 15px auto;
+    background: white;
+    padding: 30px;
+}
+#signup input {
+    display: block;
+    width: 500px;
+    margin-bottom: 15px;
+    padding: 10px;
+    font-size: 14px;
+    border: 0;
+    border-radius: 5px;
+    box-shadow: 0 0 2px rgba(0,0,0,0.5);
+}
+#signup button[type=submit] {
+    padding: 10px;
+    font-size: 14px;
+    border: 0;
+    border-radius: 5px;
+    box-shadow: 0 0 2px rgba(0,0,0,0.5);
+    background: #1c1f20;
+    color: white;
+    cursor: pointer;
+}
+#signup button[type=submit]:hover {
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+}
+
+/*--- SIGNIN
+ */
+#signin {
+    width: 520px;
+    margin: 15px auto;
+    background: white;
+    padding: 30px;
+}
+#signin input {
+    display: block;
+    width: 500px;
+    margin-bottom: 15px;
+    padding: 10px;
+    font-size: 14px;
+    border: 0;
+    border-radius: 5px;
+    box-shadow: 0 0 2px rgba(0,0,0,0.5);
+}
+#signin button[type=submit] {
+    padding: 10px;
+    font-size: 14px;
+    border: 0;
+    border-radius: 5px;
+    box-shadow: 0 0 2px rgba(0,0,0,0.5);
+    background: #1c1f20;
+    color: white;
+    cursor: pointer;
+}
+#signin button[type=submit]:hover {
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+}
+/*--- SERVICES LISTS
+ */
+#services {
+    background: white;
+    padding: 30px;
+    margin-top: 15px;
+}
+.filter-item {
+    border-radius: 5px;
+    box-shadow: 0 0 2px rgba(0,0,0,0.5);
+    display: inline-block;
+    padding: 15px;
+}
+.filter-item a {
+    color: black;
+    text-decoration: none;
+}
+#servicesList {
+    margin-top: 15px;
+}
+#servicesList a {
+    color: black;
+    text-decoration: none;
+}
+.service {
+    border-top: 1px solid gray;
+    border-bottom: 1px solid gray;
+    padding: 30px;
+    margin-bottom: 5px;
+    cursor: pointer;
+}
+.service:last-child {
+    /*border-bottom: 1px solid gray;*/
+}
+.service.passed {
+    opacity: 0.5;
+    cursor: default;
+}
+.service.busy {
+    cursor: default;
+    background: #ffe5e5;
+    color: gray;
+}
+
+/*--- PROFILE BLOCK
+ */
+#profileContent {
+    width: 500px;
+    background: #fff;
+    padding: 30px;
+    margin-top: 15px;
+}
+#myServicesList .service {
+    padding: 15px;
+}
+/*--- FULL SERVICE PAGE
+ */
+#fullService a {
+    color: black;
+    text-decoration: none;
+}
+#fullService {
+    background: #fff;
+    padding: 30px;
+    margin-top: 30px;
+}
+#fullService h2 {
+    font-weight: lighter;
+    margin: 10px 0;
+}
+#fullService p {
+    color: lightgray;
+    margin: 10px 0;
+}
+#fullService button {
+    padding: 10px;
+    font-size: 14px;
+    border: 0;
+    border-radius: 5px;
+    box-shadow: 0 0 2px rgba(0,0,0,0.5);
+    background: #1c1f20;
+    color: white;
+    cursor: pointer;
+}
+#fullService button:hover {
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+}

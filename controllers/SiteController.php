@@ -2,6 +2,8 @@
 
 namespace app\controllers;
 
+use app\models\Services;
+use app\models\User;
 use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
@@ -59,9 +61,22 @@ class SiteController extends Controller
      *
      * @return string
      */
-    public function actionIndex()
+    public function actionIndex($filter = 'all')
     {
-        return $this->render('index');
+
+        if ($filter == 'active') {
+            $services = Services::find()->where("max_order > orders AND date >= curdate()")->all();
+        }elseif($filter == 'passed'){
+            $services = Services::find()->where("date < curdate()")->all();
+        }elseif($filter == 'busy'){
+            $services = Services::find()->where("max_order <= orders")->all();
+        }else {
+            $services = Services::find()->all();
+        }
+
+        return $this->render('index',[
+            'services' => $services,
+        ]);
     }
 
     /**
@@ -83,7 +98,13 @@ class SiteController extends Controller
             'model' => $model,
         ]);
     }
+    public function actionSignup(){
+        if (!Yii::$app->user->isGuest) {
+            return $this->goHome();
+        }
 
+        $model = new SignupForm();
+    }
     /**
      * Logout action.
      *
@@ -95,32 +116,39 @@ class SiteController extends Controller
 
         return $this->goHome();
     }
+    public function actionService($id) {
+        $service = Services::findOne($id);
 
+        return $this->render("service",[
+            "service" => $service
+        ]);
+
+    }
     /**
      * Displays contact page.
      *
      * @return Response|string
      */
-    public function actionContact()
-    {
-        $model = new ContactForm();
-        if ($model->load(Yii::$app->request->post()) && $model->contact(Yii::$app->params['adminEmail'])) {
-            Yii::$app->session->setFlash('contactFormSubmitted');
-
-            return $this->refresh();
-        }
-        return $this->render('contact', [
-            'model' => $model,
-        ]);
-    }
-
-    /**
-     * Displays about page.
-     *
-     * @return string
-     */
-    public function actionAbout()
-    {
-        return $this->render('about');
-    }
+//    public function actionContact()
+//    {
+//        $model = new ContactForm();
+//        if ($model->load(Yii::$app->request->post()) && $model->contact(Yii::$app->params['adminEmail'])) {
+//            Yii::$app->session->setFlash('contactFormSubmitted');
+//
+//            return $this->refresh();
+//        }
+//        return $this->render('contact', [
+//            'model' => $model,
+//        ]);
+//    }
+//
+//    /**
+//     * Displays about page.
+//     *
+//     * @return string
+//     */
+//    public function actionAbout()
+//    {
+//        return $this->render('about');
+//    }
 }

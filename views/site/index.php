@@ -2,52 +2,46 @@
 
 /* @var $this yii\web\View */
 
-$this->title = 'My Yii Application';
+use yii\helpers\Url;
+
+$this->title = 'Услуги - Automaster';
+
 ?>
-<div class="site-index">
+<div id="servicesWrapper">
 
-    <div class="jumbotron">
-        <h1>Congratulations!</h1>
-
-        <p class="lead">You have successfully created your Yii-powered application.</p>
-
-        <p><a class="btn btn-lg btn-success" href="http://www.yiiframework.com">Get started with Yii</a></p>
-    </div>
-
-    <div class="body-content">
-
-        <div class="row">
-            <div class="col-lg-4">
-                <h2>Heading</h2>
-
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
-
-                <p><a class="btn btn-default" href="http://www.yiiframework.com/doc/">Yii Documentation &raquo;</a></p>
-            </div>
-            <div class="col-lg-4">
-                <h2>Heading</h2>
-
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
-
-                <p><a class="btn btn-default" href="http://www.yiiframework.com/forum/">Yii Forum &raquo;</a></p>
-            </div>
-            <div class="col-lg-4">
-                <h2>Heading</h2>
-
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
-
-                <p><a class="btn btn-default" href="http://www.yiiframework.com/extensions/">Yii Extensions &raquo;</a></p>
-            </div>
+    <div id="services" class="content">
+        <div class="filter-item">
+            <a href="<?= Url::toRoute(['/']) ?>">Все</a>
         </div>
+        <div class="filter-item">
+            <a href="<?= Url::toRoute(['/','filter'=>'active']) ?>">Активно</a>
+        </div>
+        <div class="filter-item">
+            <a href="<?= Url::toRoute(['/','filter'=>'passed']) ?>">Прошла</a>
+        </div>
+        <div class="filter-item">
+            <a href="<?= Url::toRoute(['/','filter'=>'busy']) ?>">Нет мест</a>
+        </div>
+        <div id="servicesList">
+            <?php foreach ($services as $service): ?>
+                <?php
+                    $today = date("Y-m-d");
+                ?>
+                <?php if($service->date < $today): ?>
+                    <div class="service passed">
+                        <?= $service->date ?> - <?= $service->name ?>
+                    </div>
+                <?php elseif($service->max_order <= $service->orders): ?>
+                    <div class="service busy">
+                        <?= $service->date ?> - <?= $service->name ?>
+                    </div>
+                <?php else: ?>
 
+                    <a href="<?= Url::toRoute(['service','id'=>$service->id]) ?>"><div class="service">
+                        <?= $service->date ?> - <?= $service->name ?>
+                    </div></a>
+                <?php endif; ?>
+            <?php endforeach; ?>
+        </div>
     </div>
 </div>
