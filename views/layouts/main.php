@@ -39,13 +39,15 @@ PublicAsset::register($this);
 
             <div class="right">
                 <?php if(Yii::$app->user->isGuest): ?>
-                    <a href="#">Регистрация</a>
+                    <a href="<?= Url::toRoute('/site/signup') ?>">Регистрация</a>
                     |
                     <a href="<?= Url::toRoute('/site/login') ?>">Войти</a>
                 <?php else: ?>
-                    <a href="#">Услуги</a>
+                    <a href="<?= Url::toRoute('/') ?>">Услуги</a>
                     |
-                    <a href="">Мои записи</a>
+                    <a href="<?= Url::toRoute('/site/myservices') ?>">Мои записи</a>
+                    |
+                    <a href="<?= Url::toRoute('/site/logout') ?>">Выйти</a>
                 <?php endif; ?>
             </div>
             <div class="clear">

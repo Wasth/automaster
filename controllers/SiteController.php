@@ -4,6 +4,7 @@ namespace app\controllers;
 
 use app\models\Services;
 use app\models\User;
+use app\models\UserServices;
 use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
@@ -34,7 +35,7 @@ class SiteController extends Controller
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
-                    'logout' => ['post'],
+                    'logout' => ['get'],
                 ],
             ],
         ];
@@ -124,31 +125,18 @@ class SiteController extends Controller
         ]);
 
     }
-    /**
-     * Displays contact page.
-     *
-     * @return Response|string
-     */
-//    public function actionContact()
-//    {
-//        $model = new ContactForm();
-//        if ($model->load(Yii::$app->request->post()) && $model->contact(Yii::$app->params['adminEmail'])) {
-//            Yii::$app->session->setFlash('contactFormSubmitted');
-//
-//            return $this->refresh();
-//        }
-//        return $this->render('contact', [
-//            'model' => $model,
-//        ]);
-//    }
-//
-//    /**
-//     * Displays about page.
-//     *
-//     * @return string
-//     */
-//    public function actionAbout()
-//    {
-//        return $this->render('about');
-//    }
+    public function actionMyservices(){
+        if(!Yii::$app->user->isGuest) {
+            $user = User::find()->where(['id'=>Yii::$app->user->id])->one();;
+
+        }else {
+            return $this->goBack();
+        }
+
+        $user_services = UserServices::find()->where(["userId"=>$user->id])->all();
+        return $this->render('myservices',[
+            'services'=>$user_services,
+            'user' => $user,
+        ]);
+    }
 }

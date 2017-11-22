@@ -9,7 +9,11 @@
 namespace app\models;
 
 
-class SignupForm
+class SignupForm extends Model
 {
-
+    public $fullName;
+    public $email;
+    public $login;
+    public $pass;
+    public $image;
 }
