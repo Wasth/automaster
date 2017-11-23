@@ -56,6 +56,10 @@ body {
     background: white;
     padding: 30px;
 }
+#signup h1 {
+    font-weight: 300;
+    margin-bottom: 15px;
+}
 #signup input {
     display: block;
     width: 500px;
@@ -87,6 +91,10 @@ body {
     margin: 15px auto;
     background: white;
     padding: 30px;
+}
+#signin h1 {
+    font-weight: 300;
+    margin-bottom: 15px;
 }
 #signin input {
     display: block;
@@ -163,8 +171,15 @@ body {
     padding: 30px;
     margin-top: 15px;
 }
+#profileContent #infoBlock {
+    margin-bottom: 15px;
+}
 #myServicesList .service {
     padding: 15px;
+}
+#myServicesList a {
+    color: black;
+    text-decoration: none;
 }
 /*--- FULL SERVICE PAGE
  */
@@ -197,4 +212,14 @@ body {
 }
 #fullService button:hover {
     box-shadow: 0 0 10px rgba(0,0,0,0.5);
+}
+
+/*--- SITE ERRORS
+ */
+.site-error {
+
+    max-width: 1000px;
+    margin: 30px auto;
+    background: #fff;
+    padding: 30px;
 }

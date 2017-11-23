@@ -3,6 +3,7 @@
 namespace app\controllers;
 
 use app\models\Services;
+use app\models\SignupForm;
 use app\models\User;
 use app\models\UserServices;
 use Yii;
@@ -105,6 +106,9 @@ class SiteController extends Controller
         }
 
         $model = new SignupForm();
+        return $this->render('signup',[
+            "model"=>$model
+        ]);
     }
     /**
      * Logout action.
