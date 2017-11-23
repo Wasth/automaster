@@ -10,6 +10,7 @@ use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\Response;
+use yii\web\UploadedFile;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
@@ -106,6 +107,12 @@ class SiteController extends Controller
         }
 
         $model = new SignupForm();
+
+        if(Yii::$app->request->isPost){
+            $file = UploadedFile::getInstance($model,'image');
+            var_dump($file);die;
+
+        }
         return $this->render('signup',[
             "model"=>$model
         ]);
