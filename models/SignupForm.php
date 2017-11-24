@@ -9,6 +9,7 @@
 namespace app\models;
 
 
+use Yii;
 use yii\base\Model;
 
 class SignupForm extends Model
@@ -32,18 +33,36 @@ class SignupForm extends Model
         ];
     }
     public function validateFullName($attribute,$params) {
-        //$this->addError($attribute,'Полное имя должно быть в формате "Фамилия Имя Отчество');
+        $attribute = trim($attribute);
+//        var_dump(explode(" ",$this->fullName));die;
+        if(sizeof(explode(" ",$this->fullName)) != 3) {
+            $this->addError($attribute,'Имя должно быть в формате "Фамилия Имя Отчество"');
+        }
 
     }
     public function signup(){
-        $hasImg =
-        $ss = $this->validate();
-        var_dump($ss);
-        echo "<br>";
-        var_dump($this->attributes);die;
+        if($this->validate()){
+            $newUser = $this->loadToUser();
+            return $newUser->save();
+        }else {
+            return false;
+        }
     }
-    public function setImage(){
-
+    public function setImage($img){
+        $this->image = $this->generateFilename($img);
+        $img->saveAs(Yii::getAlias("@web").'avatars/'.$this->image);
+        return $this->image;
     }
-
+    private function generateFilename($img){
+        return $filename = md5(uniqid($img->baseName)).'.'.$img->extension;
+    }
+    private function loadToUser(){
+        $newUser = new User();
+        $newUser->login = $this->login;
+        $newUser->full_name = $this->fullName;
+        $newUser->email = $this->email;
+        $newUser->pass = $this->pass;
+        $newUser->image = $this->image;
+        return $newUser;
+    }
 }

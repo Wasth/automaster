@@ -29,16 +29,16 @@ $this->title = 'Услуги - Automaster';
                 ?>
                 <?php if($service->date < $today): ?>
                     <div class="service passed">
-                        <?= $service->date ?> - <?= $service->name ?>
+                        <?= Yii::$app->formatter->asDate($service->date,'long'); ?> - <?= $service->name ?>
                     </div>
                 <?php elseif($service->max_order <= $service->orders): ?>
                     <div class="service busy">
-                        <?= $service->date ?> - <?= $service->name ?>
+                        <?= Yii::$app->formatter->asDate($service->date,'long'); ?> - <?= $service->name ?>
                     </div>
                 <?php else: ?>
 
                     <a href="<?= Url::toRoute(['service','id'=>$service->id]) ?>"><div class="service">
-                        <?= $service->date ?> - <?= $service->name ?>
+                        <?= Yii::$app->formatter->asDate($service->date,'long'); ?> - <?= $service->name ?>
                     </div></a>
                 <?php endif; ?>
             <?php endforeach; ?>

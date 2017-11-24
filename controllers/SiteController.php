@@ -8,6 +8,7 @@ use app\models\User;
 use app\models\UserServices;
 use Yii;
 use yii\filters\AccessControl;
+use yii\helpers\Url;
 use yii\web\Controller;
 use yii\web\Response;
 use yii\web\UploadedFile;
@@ -110,7 +111,12 @@ class SiteController extends Controller
 
         if(Yii::$app->request->isPost){
             $file = UploadedFile::getInstance($model,'image');
-            var_dump($file);die;
+            $model->load(Yii::$app->request->post());
+            $model->setImage($file);
+            if($model->signup()){
+
+                $this->redirect(Url::toRoute(['/site/login']));
+            }
 
         }
         return $this->render('signup',[
